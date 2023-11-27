@@ -27,7 +27,7 @@
 // time.Duration. Types implementing [flag.Value] interface are also supported.
 // Attaching a non-empty `flag` tag to field of an unsupported type would result in
 // panic.
-package autoflags // import "github.com/artyom/autoflags"
+package autoflags // import "github.com/mleku/autoflags"
 
 import (
 	"errors"
@@ -132,7 +132,8 @@ func DefineFlagSet(fs *flag.FlagSet, config interface{}) {
 		case time.Duration:
 			fs.DurationVar(addr.Interface().(*time.Duration), name, d, usage)
 		default:
-			panic(fmt.Sprintf("autoflags: field with flag tag value %q is of unsupported type", name))
+			panic(fmt.Sprintf("autoflags: field with flag tag value %q is of unsupported type",
+				name))
 		}
 	}
 }
